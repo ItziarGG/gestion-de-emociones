@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestor de Emociones</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f9ff;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    label, select, input, button {
+      display: block;
+      margin: 10px 0;
+    }
+    .resultado {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      background-color: #e6f7ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>¿Cómo te sientes hoy?</h1>
+  
+  <label for="nick">Escribe tu nombre o nick:</label>
+  <input type="text" id="nick" placeholder="Tu nombre...">
+  
+  <label for="emocion">Selecciona tu emoción:</label>
+  <select id="emocion">
+    <option value="">-- Elige una opción --</option>
+    <option value="leve">Ansiedad leve</option>
+    <option value="moderada">Ansiedad moderada</option>
+    <option value="alta">Ansiedad alta</option>
+    <option value="tristeza">Tristeza o desánimo</option>
+    <option value="depresion">Depresión intensa</option>
+  </select>
+  
+  <button onclick="mostrarRecomendacion()">Ver recomendación</button>
+
+  <div class="resultado" id="resultado"></div>
+
+  <script>
+    function mostrarRecomendacion() {
+      const nick = document.getElementById('nick').value.trim();
+      const emocion = document.getElementById('emocion').value;
+      const resultado = document.getElementById('resultado');
+
+      if (!nick || !emocion) {
+        resultado.innerHTML = "Por favor, escribe tu nombre y selecciona una emoción.";
+        return;
+      }
+
+      let mensaje = `<strong>Hola ${nick}</strong><br>`;
+
+      switch (emocion) {
+        case 'leve':
+          mensaje += "Parece que estás un poco ansioso. Intenta este ejercicio de respiración: <br><em>Inhala por 4 segundos, mantén por 4, exhala por 4, pausa por 4. Repite 5-6. Vuelve a realizar 5 o 6 respiraciones, pero aumentando los segundos: 5 segundos inspiración, 5 aguantar, , 5 expira y 5 aguantar sin aire, Y continua, hasta que te sientas mejor. </em>";
+          break;
+        case 'moderada':
+          mensaje += "La ansiedad está presente. Te recomiendo practicar un escaneo corporal con atención plena. <br><em>Busca un lugar tranquilo y recorre tu cuerpo con la mente desde los pies hasta la cabeza. Realiza respiraciones profundas y cuando inspires lleva al aire a cada parte de tu cuerpo en la que focalizas la antención. Sigue respirando de forma pausada. Intenta soltar el aire muy despacio, la exhalación debe durar cuento más tiempo mejor. </em>";
+          break;
+        case 'alta':
+          mensaje += "Tu ansiedad parece alta. Prueba con una visualización: <br><em>Imagina un lugar seguro, tranquilo, donde puedas descansar tu mente. Respira profundamente mientras lo visualizas. Intenta sentir la temperatura del lugar que imaginas, los sonidos, los olores, y continua respirando mientras entras más profundamente en tu lugar imaginado. Realiza respiraciones cuadradas (insipirar, contener el aire, exhalar y aguantar sin aire) durante 4 segundos cada fase e ir aumentando el tiempo. Si te sigues sintinedo mal, contacta con un psicológo o con tu médico.</em>";
+          break;
+        case 'tristeza':
+          mensaje += "Sientes tristeza. Escribe una lista de cosas que te hacen sentir bien o que disfrutaste en el pasado. Pon fecha a las 3 primeras y busca la forma de hacer alguna cosa, con alguien o solo, pero sal de casa. Fíjate en las personas, en los animales, en los ruidos, en la vida que te rodea.  <br><em>Una caminata, una película, hablar con alguien...</em>";
+          break;
+        case 'depresion':
+          mensaje += "Te sientes deprimido. Vamos a cuestionar esos pensamientos negativos. Pregúntate: <br><em>¿Qué evidencia tengo de que esto es cierto? ¿Qué le diría a un amigo que se sintiera así? ¿Esto será igual en una semana?</em>";
+          break;
+        default:
+          mensaje += "Selecciona una emoción para obtener recomendaciones.";
+      }
+
+      resultado.innerHTML = mensaje;
+    }
+  </script>
+</body>
+</html>
